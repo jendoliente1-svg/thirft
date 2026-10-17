@@ -1,0 +1,52 @@
+/* SkyWorld shared theme: royal blue + powder blue + cream */
+:root{
+  --royal:#4169E1; --royal-d:#2c4fb8; --royal-dd:#1f3a8a;
+  --powder:#B0E0E6; --powder-l:#DCF0F3; --powder-d:#8ac6d0;
+  --cream:#FFF8E7; --cream-d:#F7EDD2; --paper:#FFFCF3;
+  --glow:rgba(65,105,225,.45); --glow-soft:rgba(176,224,230,.9);
+  --ok:#1f8a5b; --wa:#b07a00; --er:#c93b47;
+}
+
+/* ---- zoom-in + glow on every boxed element ---- */
+.card,.stat,.panel,.stall,.pc,.abox,.hero,.crow,.cap-tile,.list-i,.slist button,.set-top{
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  animation:zoomGlow .55s ease-out backwards;
+}
+.stat,.stall,.pc,.cap-tile{--z:1.05}
+.card,.panel,.abox,.hero,.set-top{--z:1.012}
+.crow,.list-i{--z:1.01}
+.card:hover,.stat:hover,.panel:hover,.stall:hover,.pc:hover,.abox:hover,.hero:hover,.crow:hover,.cap-tile:hover,.list-i:hover,.set-top:hover,
+.card:focus-within,.panel:focus-within,.abox:focus-within{
+  transform:scale(var(--z));
+  box-shadow:0 0 0 2px var(--powder),0 8px 28px var(--glow);
+  border-color:var(--royal);
+  position:relative; z-index:2;
+}
+@keyframes zoomGlow{
+  0%{opacity:0;transform:scale(.9);box-shadow:0 0 0 rgba(65,105,225,0)}
+  60%{opacity:1;transform:scale(1.025);box-shadow:0 0 26px var(--glow)}
+  100%{opacity:1;transform:scale(1)}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+
+/* ---- captcha (jumbled letters and numbers) ---- */
+.captcha{margin:6px 0}
+.cap-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.cap-code{flex:1;background:repeating-linear-gradient(45deg,var(--powder-l),var(--powder-l) 6px,#cfe8ec 6px,#cfe8ec 12px);border:1px solid var(--powder-d);border-radius:8px;padding:8px;text-align:center;letter-spacing:6px;font-weight:800;font-style:italic;user-select:none;color:var(--royal-dd);display:flex;justify-content:center;align-items:center;min-height:52px}
+.cap-code span{display:inline-block}
+.cap-r{padding:8px 12px;font-size:18px;background:var(--powder)!important;color:var(--royal-dd)!important}
+.cap-in{letter-spacing:3px;text-transform:uppercase}
+
+/* ---- profile picture ---- */
+.avatar{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:var(--royal);color:var(--cream);font-weight:800;overflow:hidden;flex:none;border:3px solid var(--powder)}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.av-pick{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:8px;margin-top:8px}
+.av-pick button{font-size:24px;padding:6px;background:var(--powder-l)!important;color:inherit!important;border:2px solid transparent!important;border-radius:12px}
+.av-pick button.on{border-color:var(--royal)!important;box-shadow:0 0 14px var(--glow)}
+.pf-head{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.pf-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+/* logo used in the sidebar and store header */
+.blogo{width:34px;height:34px;object-fit:contain;border-radius:8px;vertical-align:middle;margin-right:6px;background:transparent}
+aside .brand,header .logo{display:flex;align-items:center}
